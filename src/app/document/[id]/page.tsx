@@ -19,7 +19,6 @@ export default async function DocumentPage({ params }: { params: { id: string } 
     console.log("DocumentPage", id);
     return (
         <div>
-
             <DocumentClient currentDoc={currentDoc} />
         </div>
     );

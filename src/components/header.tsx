@@ -1,41 +1,24 @@
-// import {
-//     ClerkProvider,
-//     SignInButton,
-//     SignedIn,
-//     SignedOut,
-//     UserButton
-// } from '@clerk/nextjs';
-
 import Link from 'next/link';
-import { Flex, Box, Text } from '@radix-ui/themes';
+import { Flex, Heading, Card } from '@radix-ui/themes';
 import { Button } from '@radix-ui/themes';
 
 export default function Header() {
     return (
-        <header>
-            <Flex align="center" justify="between">
-                <Text >
-                    Create Next App
-                </Text>
-                <nav>
-                    <Flex>
-                        <Box >
-                            <Link href="/" passHref>
-                                <Button variant="ghost" className="hover:underline">
-                                    Home
-                                </Button>
-                            </Link>
-                        </Box>
-                        <Box >
-                            <Link href="/dashboard" passHref>
-                                <Button variant="ghost" className="hover:underline">
-                                    Dashboard
-                                </Button>
-                            </Link>
-                        </Box>
-                    </Flex>
-                </nav>
-            </Flex>
+        <header className='p-2 sticky top-0 z-10'>
+            <Card variant='surface'>
+                <Flex align="center" justify="between">
+                    <Link href="/">
+                        <Heading as="h2">
+                            QuestRAG
+                        </Heading>
+                    </Link>
+                    <Link href="/dashboard">
+                        <Button className='hover:cursor-pointer'>
+                            Get Started
+                        </Button>
+                    </Link>
+                </Flex>
+            </Card>
         </header>
     );
 }
