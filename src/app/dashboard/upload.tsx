@@ -1,13 +1,13 @@
 "use client";
 
-import { TextField, Button, Text, Spinner } from "@radix-ui/themes";
+import { Button, Spinner } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
 import * as Form from '@radix-ui/react-form'
 import { useState } from "react";
 
 export default function FileUpload() {
     const [file, setFile] = useState<File>();
-    const [url, setUrl] = useState("");
+    // const [url, setUrl] = useState("");
     const [uploading, setUploading] = useState(false);
 
     const uploadFile = async () => {
@@ -25,7 +25,7 @@ export default function FileUpload() {
             });
             const payload = await uploadRequest.json();
             console.log(payload);
-            setUrl(payload.url);
+            // setUrl(payload.url);
             await ingestPdf(payload.url, payload.cid, file.name);
             setUploading(false);
             setFile(undefined)
@@ -41,7 +41,7 @@ export default function FileUpload() {
     };
 
     async function ingestPdf(fileUrl: string, cid: string, fileName: string) {
-        let res = await fetch('/api/ingestPdf', {
+        const res = await fetch('/api/ingestPdf', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function FileUpload() {
             }),
         });
 
-        let data = await res.json();
+        const data = await res.json();
 
         console.log(data)
     }

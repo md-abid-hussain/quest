@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import prisma from "@/utils/prisma";
@@ -7,7 +7,7 @@ import { loadEmbeddingsModel } from "@/utils/loadEmbeddings";
 import { loadVectorStore } from "@/utils/vectorstore";
 import { type MongoClient } from "mongodb";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   let mongoDbClient: MongoClient | null = null;
 
   const { fileUrl, fileName, cid } = await request.json();
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing fileUrl or fileName" });
   }
 
-  const { userId } = getAuth(request as any);
+  const { userId } = getAuth(request);
 
   if (!userId) {
     return NextResponse.json({ error: "You must be logged in to ingest data" });

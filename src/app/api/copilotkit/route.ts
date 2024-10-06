@@ -9,7 +9,7 @@ import OpenAI from "openai";
 
 const token = process.env["OPENAI_API_KEY"];
 const endpoint = "https://models.inference.ai.azure.com";
-const modelName = "gpt-4o";
+// const modelName = "gpt-4o";
 const openai = new OpenAI({ baseURL: endpoint, apiKey: token });
 const serviceAdapter = new OpenAIAdapter({ openai, model: "gpt-4o-mini" });
 
