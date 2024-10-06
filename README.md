@@ -1,4 +1,10 @@
+
+
 # Quest
+
+## Video Demo
+[<img src="https://img.freepik.com/free-vector/minimal-white-style-video-player-template-design_1017-25481.jpg?size=626&ext=jpg&ga=GA1.1.1819120589.1728086400&semt=ais_hybrid" width="50%">](https://youtu.be/_QYxTYlVMmY)
+
 
 Quest is a RAG (Retrieval-Augmented Generation) application built using CopilotKit and CoAgent. It allows users to upload documents and chat with them. This README provides an overview of the project, how to set it up, and how to contribute.
 
