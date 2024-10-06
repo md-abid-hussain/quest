@@ -4,6 +4,7 @@ import { Button, Spinner } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
 import * as Form from '@radix-ui/react-form'
 import { useState } from "react";
+import { PutBlobResult } from "@vercel/blob";
 
 export default function FileUpload() {
     const [file, setFile] = useState<File>();
@@ -23,10 +24,11 @@ export default function FileUpload() {
                 method: "POST",
                 body: data,
             });
-            const payload = await uploadRequest.json();
-            console.log(payload);
+            const newBlob = (await uploadRequest.json()) as PutBlobResult;
+            console.log(newBlob);
+
             // setUrl(payload.url);
-            await ingestPdf(payload.url, payload.cid, file.name);
+            await ingestPdf(newBlob.url, file.name);
             setUploading(false);
             setFile(undefined)
         } catch (e) {
@@ -40,7 +42,7 @@ export default function FileUpload() {
         setFile(e.target?.files?.[0]);
     };
 
-    async function ingestPdf(fileUrl: string, cid: string, fileName: string) {
+    async function ingestPdf(fileUrl: string, fileName: string) {
         const res = await fetch('/api/ingestPdf', {
             method: 'POST',
             headers: {
@@ -49,7 +51,6 @@ export default function FileUpload() {
             body: JSON.stringify({
                 fileUrl,
                 fileName,
-                cid: cid
             }),
         });
 

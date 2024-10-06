@@ -1,8 +1,10 @@
 import DocumentClient from "./document-client";
 import prisma from "@/utils/prisma";
 
+
+
 export default async function DocumentPage({ params }: { params: { id: string } }) {
-    const docId = "cm1xcrbz30000t1vtnp8ww6au"
+    const docId = params.id
     const currentDoc = await prisma.document.findUnique({
         where: {
             id: docId
@@ -17,6 +19,7 @@ export default async function DocumentPage({ params }: { params: { id: string } 
     console.log("DocumentPage", id);
     return (
         <div>
+
             <DocumentClient currentDoc={currentDoc} />
         </div>
     );

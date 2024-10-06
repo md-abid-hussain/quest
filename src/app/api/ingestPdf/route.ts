@@ -10,9 +10,9 @@ import { type MongoClient } from "mongodb";
 export async function POST(request: NextRequest) {
   let mongoDbClient: MongoClient | null = null;
 
-  const { fileUrl, fileName, cid } = await request.json();
+  const { fileUrl, fileName } = await request.json();
 
-  if (!fileUrl || !fileName || !cid) {
+  if (!fileUrl || !fileName) {
     return NextResponse.json({ error: "Missing fileUrl or fileName" });
   }
 
@@ -27,7 +27,6 @@ export async function POST(request: NextRequest) {
       fileName,
       fileUrl,
       userId,
-      cid,
     },
   });
 

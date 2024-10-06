@@ -18,7 +18,6 @@ model Document {
   id        String   @id @default(cuid())
   userId    String
   fileUrl   String
-  cid       String   @unique
   fileName  String
   createdAt DateTime @default(now()) @map(name: "created_at")
 }
