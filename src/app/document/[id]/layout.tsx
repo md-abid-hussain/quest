@@ -4,7 +4,7 @@ import DashboardHeader from "@/components/dashboard-header";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <CopilotKit runtimeUrl="/api/copilotkit">
+        <CopilotKit runtimeUrl="/api/copilotkit" agent="rag">
             <DashboardHeader />
             {children}
         </CopilotKit>

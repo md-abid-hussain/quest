@@ -1,5 +1,4 @@
 'use client'
-
 import { Viewer, Worker } from '@react-pdf-viewer/core'
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
@@ -36,7 +35,7 @@ export default function DocumentPage({ currentDoc }: { currentDoc: Document }) {
     });
 
     useCopilotChatSuggestions({
-        instructions: `This is an rag application so suggest question related to documents`,
+        instructions: `This is an rag application so suggest question related to documents like summarize this, or whats objective of this document`,
     });
 
     return (
@@ -47,9 +46,13 @@ export default function DocumentPage({ currentDoc }: { currentDoc: Document }) {
                     title: "Popup Assistant",
                     initial: "Need any help?",
                 }}
-
                 onSubmitMessage={(message) => {
                     console.log(message);
+                }}
+                makeSystemMessage={(message, additionalInstruction) => {
+                    console.log(message);
+                    console.log(additionalInstruction);
+                    return message + `chatId: ${currentDoc.id}`;
                 }}
 
 
