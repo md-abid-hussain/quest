@@ -22,7 +22,7 @@ export default function DashboardHeader() {
                             {pathname === "/dashboard" ? "Dashboard" : "Document"}
                         </Heading>
                     </Flex>
-                    <Flex>
+                    <Flex gap={"4"}>
                         {pathname !== "/dashboard" && <Link href="/">
                             <Button className='hover:cursor-pointer'>
                                 Dashboard
