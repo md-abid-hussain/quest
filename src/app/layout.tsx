@@ -1,6 +1,17 @@
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import '@radix-ui/themes/styles.css';
+import "@copilotkit/react-ui/styles.css";
 import "./globals.css";
+
+import { Theme } from '@radix-ui/themes';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,12 +35,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <Theme accentColor="blue" appearance="light">
+            {/* <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn> */}
+            {children}
+          </Theme>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
