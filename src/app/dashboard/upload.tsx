@@ -1,16 +1,18 @@
 "use client";
 
-import { Button, Card, Heading, Spinner } from "@radix-ui/themes";
+import { Button, Card, Spinner } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
 import * as Form from '@radix-ui/react-form';
 import { useState } from "react";
 import { PutBlobResult } from "@vercel/blob";
+import { useRouter } from "next/navigation";
 
 export default function FileUpload() {
     const [file, setFile] = useState<File>();
     const [fileName, setFileName] = useState<string>("");
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
 
     const uploadFile = async () => {
         try {
@@ -55,19 +57,25 @@ export default function FileUpload() {
     };
 
     async function ingestPdf(fileUrl: string, fileName: string) {
-        const res = await fetch('/api/ingestPdf', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                fileUrl,
-                fileName,
-            }),
-        });
+        try {
+            const res = await fetch('/api/ingestPdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fileUrl,
+                    fileName,
+                }),
+            });
 
-        const data = await res.json();
-        console.log(data);
+            const data = await res.json();
+            console.log(data);
+            router.push(`/document/${data.id}`);
+        } catch (e) {
+            console.error(e);
+
+        }
     }
 
     return (

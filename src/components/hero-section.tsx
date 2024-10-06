@@ -4,7 +4,11 @@ import Image from "next/image";
 
 export default function HeroSection() {
     return (
-        <Box>
+        <Box height={{
+            initial: "calc(90vh - 70px)",
+        }}
+            className="flex justify-center items-center"
+        >
             <Container p={"6"}>
                 <Flex direction={{ initial: "column", md: "row" }} align="center" justify="between" className="gap-8">
                     <Box className="flex-1 text-center md:text-left">

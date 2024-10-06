@@ -13,7 +13,7 @@ import { Document } from '@prisma/client'
 import { CopilotSidebar } from "@copilotkit/react-ui";
 import { useCopilotReadable } from "@copilotkit/react-core";
 import { useCopilotChatSuggestions } from "@copilotkit/react-ui";
-import { Box, Card } from '@radix-ui/themes';
+import { Box } from '@radix-ui/themes';
 
 export default function DocumentPage({ currentDoc }: { currentDoc: Document }) {
 

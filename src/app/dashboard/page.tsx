@@ -3,7 +3,7 @@ import prisma from "@/utils/prisma";
 import { currentUser } from '@clerk/nextjs/server';
 import type { User } from '@clerk/nextjs/server';
 import Link from "next/link";
-import { Box, Heading, Text, Container, Flex, Card, Button } from '@radix-ui/themes';
+import { Box, Heading, Text, Container, Flex, Card } from '@radix-ui/themes';
 
 export default async function DashboardPage() {
     const user: User | null = await currentUser();
